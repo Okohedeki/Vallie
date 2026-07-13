@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vaultly — the encrypted studio for content creators</title>
+<meta name="description" content="A private home for your footage: locked on your own computer, organized for you, cut, and dubbed into 10 languages with a real voice — with a final safety check before anything posts. No cloud, no account, no subscription.">
+<meta property="og:title" content="Vaultly — the private studio for content creators">
+<meta property="og:description" content="Your footage, locked on your own computer: organized, cut, dubbed into 10 languages, and never uploaded anywhere.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23c462f5'/><text x='50' y='72' text-anchor='middle' font-size='60' font-weight='800' font-family='sans-serif' fill='white'>V</text></svg>">
+<style>
+  :root {
+    --bg: #120d18;
+    --bg-2: #191221;
+    --panel: #1e1628;
+    --line: rgba(255, 255, 255, 0.08);
+    --fg: #f4effa;
+    --mut: #b3a6c9;
+    --fnt: #7d7095;
+    --rose: #ff5c8a;
+    --violet: #a855f7;
+    --grad: linear-gradient(135deg, #ff5c8a 0%, #c462f5 55%, #a855f7 100%);
+    --disp: ui-rounded, 'SF Pro Rounded', -apple-system, 'Segoe UI', system-ui, sans-serif;
+    --body: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(52% 38% at 78% -4%, rgba(168, 85, 247, 0.16), transparent 62%),
+      radial-gradient(44% 34% at 12% -2%, rgba(255, 92, 138, 0.12), transparent 58%),
+      var(--bg);
+    color: var(--fg);
+    font-family: var(--body);
+    font-size: 16.5px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: var(--disp); margin: 0; text-wrap: balance; letter-spacing: -0.02em; }
+  p { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
+  .grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+  /* ── nav ── */
+  nav { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(14px); background: rgba(18, 13, 24, 0.72); border-bottom: 1px solid var(--line); }
+  .nav-in { display: flex; align-items: center; gap: 28px; height: 62px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: var(--disp); font-weight: 800; font-size: 19px; }
+  .brand .v { width: 30px; height: 30px; border-radius: 9px; background: var(--grad); display: grid; place-items: center; font-size: 16px; color: #fff; box-shadow: 0 4px 18px rgba(196, 98, 245, 0.45); }
+  .nav-links { display: flex; gap: 22px; margin-left: 12px; font-size: 14.5px; color: var(--mut); }
+  .nav-links a:hover { color: var(--fg); }
+  .nav-cta { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; border-radius: 12px; padding: 10px 18px; font-family: var(--disp); font-weight: 700; font-size: 14.5px; cursor: pointer; border: 1px solid var(--line); color: var(--fg); transition: transform 0.13s ease, filter 0.13s ease; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--grad); border: none; color: #fff; box-shadow: 0 8px 28px rgba(255, 92, 138, 0.3); }
+  .btn-primary:hover { filter: brightness(1.07); }
+  .btn-ghost { background: rgba(255, 255, 255, 0.04); }
+
+  /* ── hero ── */
+  .hero { padding: 92px 0 40px; text-align: center; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em; color: var(--mut); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; background: rgba(255, 255, 255, 0.03); }
+  .eyebrow .dot { width: 7px; height: 7px; border-radius: 99px; background: var(--grad); box-shadow: 0 0 10px rgba(255, 92, 138, 0.8); }
+  .hero h1 { font-size: clamp(40px, 6.2vw, 68px); font-weight: 800; line-height: 1.04; margin: 26px auto 18px; max-width: 17ch; }
+  .hero .lede { font-size: 19px; color: var(--mut); max-width: 56ch; margin: 0 auto 30px; }
+  .hero-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .hero-note { margin-top: 14px; font-size: 13px; color: var(--fnt); }
+  .hero-note code { font-family: var(--mono); font-size: 12px; background: rgba(255,255,255,0.05); padding: 2px 7px; border-radius: 6px; }
+
+  /* ── window-framed screenshot ── */
+  .window { margin: 56px auto 0; max-width: 1020px; border-radius: 16px; border: 1px solid var(--line); background: var(--panel); box-shadow: 0 40px 120px rgba(0, 0, 0, 0.55), 0 0 90px rgba(196, 98, 245, 0.14); overflow: hidden; }
+  .window-bar { display: flex; align-items: center; gap: 7px; padding: 11px 14px; background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid var(--line); }
+  .window-bar span { width: 11px; height: 11px; border-radius: 99px; background: rgba(255, 255, 255, 0.14); }
+  .window-bar span:first-child { background: #ff5f57; } .window-bar span:nth-child(2) { background: #febc2e; } .window-bar span:nth-child(3) { background: #28c840; }
+
+  /* ── facts strip ── */
+  .facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 34px; padding: 44px 0 8px; color: var(--fnt); font-size: 14px; font-weight: 600; }
+  .facts b { color: var(--mut); font-weight: 700; }
+
+  /* ── sections ── */
+  section { padding: 88px 0 0; }
+  .kicker { font-family: var(--disp); font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
+  .k-rose { color: var(--rose); } .k-violet { color: #c084fc; } .k-mint { color: #4ade80; }
+  section h2 { font-size: clamp(28px, 3.6vw, 40px); font-weight: 800; margin: 10px 0 12px; }
+  .sub { color: var(--mut); max-width: 62ch; font-size: 17px; }
+
+  .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 54px; align-items: center; margin-top: 44px; }
+  .feature.flip .f-copy { order: 2; }
+  .f-copy h3 { font-size: 24px; font-weight: 750; margin-bottom: 10px; }
+  .f-copy p { color: var(--mut); margin-bottom: 16px; }
+  .f-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; color: var(--mut); font-size: 15.5px; }
+  .f-list li { padding-left: 26px; position: relative; }
+  .f-list li::before { content: ''; position: absolute; left: 0; top: 7px; width: 14px; height: 14px; border-radius: 5px; background: var(--grad); opacity: 0.85; }
+  .shot { border-radius: 14px; border: 1px solid var(--line); box-shadow: 0 26px 70px rgba(0, 0, 0, 0.5), 0 0 60px rgba(196, 98, 245, 0.1); }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .chip { font-size: 13px; font-weight: 600; color: var(--mut); border: 1px solid var(--line); background: rgba(255, 255, 255, 0.03); border-radius: 999px; padding: 5px 13px; }
+
+  /* ── terminal ── */
+  .term { margin-top: 40px; background: #0d0913; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 26px 70px rgba(0, 0, 0, 0.5); }
+  .term-bar { display: flex; align-items: center; gap: 8px; padding: 11px 16px; border-bottom: 1px solid var(--line); color: var(--fnt); font-family: var(--mono); font-size: 12px; }
+  .term pre { margin: 0; padding: 22px 24px; font-family: var(--mono); font-size: 13.5px; line-height: 1.75; overflow-x: auto; color: #cfc4e4; }
+  .term .c { color: #6d6088; } .term .g { color: #4ade80; } .term .p { color: #ff8fb0; }
+
+  /* ── gate card row ── */
+  .cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 26px 24px; }
+  .card h3 { font-size: 17.5px; font-weight: 750; margin-bottom: 8px; }
+  .card p { color: var(--mut); font-size: 14.5px; }
+  .card .ic { font-size: 22px; margin-bottom: 12px; display: block; }
+
+  /* ── manifesto ── */
+  .manifesto { margin-top: 88px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: linear-gradient(180deg, rgba(255, 92, 138, 0.045), rgba(168, 85, 247, 0.045)); padding: 64px 0; text-align: center; }
+  .manifesto h2 { max-width: 26ch; margin: 10px auto 14px; }
+  .manifesto .sub { margin: 0 auto; }
+
+  /* ── final cta ── */
+  .final { text-align: center; padding: 96px 0 30px; }
+  .final h2 { font-size: clamp(30px, 4vw, 46px); }
+  .final .hero-cta { margin-top: 28px; }
+
+  footer { margin-top: 70px; border-top: 1px solid var(--line); padding: 30px 0 44px; color: var(--fnt); font-size: 14px; }
+  .foot-in { display: flex; flex-wrap: wrap; gap: 14px 30px; align-items: center; }
+  .foot-in a:hover { color: var(--fg); }
+  .foot-in .brand { font-size: 15px; }
+  .foot-in .spacer { flex: 1; }
+
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+    .feature, .feature.flip { grid-template-columns: 1fr; gap: 26px; }
+    .feature.flip .f-copy { order: 0; }
+    .cards3 { grid-template-columns: 1fr; }
+    .hero { padding-top: 64px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="#"><span class="v">V</span>Vaultly</a>
+    <div class="nav-links">
+      <a href="#vault">Vault</a>
+      <a href="#edit">Edit</a>
+      <a href="#localize">Languages</a>
+      <a href="#safety">Safety &amp; Rights</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="https://github.com/Okohedeki/Vaultly/releases/download/v0.4.0/Vaultly-0.4.0-arm64.dmg">Download</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span>Free while in beta · nothing ever leaves your computer</span>
+    <h1>The studio your <span class="grad-text">content</span> deserves.</h1>
+    <p class="lede">
+      A private home for your footage — no cloud, no uploads, nobody else with a key.
+      Drop in a shoot and it's locked, split into scenes, and instantly searchable.
+      Cut it, dub it into ten languages with a real voice, and give every clip a last
+      look before it posts.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="https://github.com/Okohedeki/Vaultly/releases/download/v0.4.0/Vaultly-0.4.0-arm64.dmg">⬇ Download for Mac</a>
+      <a class="btn btn-ghost" href="https://github.com/Okohedeki/Vaultly/releases/download/v0.4.0/Vaultly-Setup-0.4.0.exe">⬇ Download for Windows</a>
+    </div>
+    <p class="hero-note">Free while in beta · no account, no subscription</p>
+
+    <div class="window">
+      <div class="window-bar"><span></span><span></span><span></span></div>
+      <img src="assets/shot-vault.png" alt="The Vaultly vault — encrypted clips, scene-split and searchable" width="1440" loading="eager">
+    </div>
+
+    <div class="facts">
+      <span><b>Encrypted</b> on your device</span>
+      <span><b>Never</b> uploaded</span>
+      <span>Dubbed in <b>10 languages</b></span>
+      <span><b>You</b> approve every post</span>
+      <span><b>No</b> subscription</span>
+    </div>
+  </div>
+</header>
+
+<section id="vault">
+  <div class="wrap">
+    <span class="kicker k-rose">The Vault</span>
+    <h2>Footage goes in. It never goes anywhere else.</h2>
+    <p class="sub">The moment a file lands, it's locked with a key only your computer holds —
+    nothing is uploaded, and no one else can open it. Then Vaultly quietly organizes it all
+    for you.</p>
+    <div class="feature">
+      <div class="f-copy">
+        <h3>Find any moment in seconds</h3>
+        <ul class="f-list">
+          <li>Every clip is <b>split into its scenes</b>, ready to scrub</li>
+          <li><b>Search by what's said</b> — every spoken word is findable</li>
+          <li><b>Auto-tagged</b> by look and setting, with “show me more like this”</li>
+          <li>Duplicate files quietly clean themselves up</li>
+        </ul>
+      </div>
+      <img class="shot" src="assets/shot-vault.png" alt="Vault library view" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section id="edit">
+  <div class="wrap">
+    <span class="kicker k-violet">Edit &amp; Localize</span>
+    <h2>One shoot. Every platform. Every language.</h2>
+    <p class="sub">Pull your best moments into a cut, add captions and music, and you're done.
+    Then reach a wider audience with one click: turn any cut into a version dubbed for another
+    language — subtitles and a spoken voice track — without leaving the app.</p>
+    <div class="feature flip" id="localize">
+      <div class="f-copy">
+        <h3>Speak to the whole world — in a real voice</h3>
+        <p>Vaultly listens to your clip, translates what's said, and speaks it back out loud in
+        the new language. It all happens on your own computer, and your video never leaves it.</p>
+        <div class="chips">
+          <span class="chip">Español</span><span class="chip">Português</span><span class="chip">Français</span>
+          <span class="chip">Deutsch</span><span class="chip">Italiano</span><span class="chip">हिन्दी</span>
+          <span class="chip">Bahasa</span><span class="chip">日本語</span><span class="chip">한국어</span><span class="chip">العربية</span>
+        </div>
+      </div>
+      <img class="shot" src="assets/shot-cuts.png" alt="Cuts and localized Dubs" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section id="safety">
+  <div class="wrap">
+    <span class="kicker k-mint">Safety &amp; Rights</span>
+    <h2>Nothing goes out until you say so.</h2>
+    <p class="sub">Before a clip can be posted to a platform, it stops for a final check —
+    Vaultly marks anything sensitive for you, you take a last look, and only then does it
+    unlock. And every clip can carry a signed release that travels inside the file itself.</p>
+    <div class="cards3">
+      <div class="card"><span class="ic">🛡️</span><h3>A final look, always</h3><p>Cover anything that shouldn't go public. Nothing exports until you personally approve it — no exceptions, no way around it.</p></div>
+      <div class="card"><span class="ic">✍️</span><h3>Consent on file</h3><p>Model, location, and license releases — signed right in the app, tied to the exact footage, and baked into the exported file.</p></div>
+      <div class="card"><span class="ic">🔍</span><h3>Know where it came from</h3><p>Give each recipient their own invisible watermark, so a leaked clip can tell you exactly who let it out.</p></div>
+    </div>
+    <div class="feature" style="margin-top: 40px;">
+      <div class="f-copy">
+        <h3>Consent that actually holds up</h3>
+        <ul class="f-list">
+          <li>Sign with a finger or a mouse — the signature stays locked in your vault</li>
+          <li>Each agreement gets a tamper-proof fingerprint you can always re-check</li>
+          <li>Every deliverable shows at a glance whether its releases are on file</li>
+        </ul>
+      </div>
+      <img class="shot" src="assets/shot-rights.png" alt="Rights — signed releases" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<div class="manifesto">
+  <div class="wrap">
+    <span class="kicker k-violet">Why it lives on your machine</span>
+    <h2>Your content is your livelihood. Treat it like it.</h2>
+    <p class="sub">No uploads. No strangers reviewing your library. No terms-of-service
+    roulette. Vaultly is a tool you own, on hardware you own, answering to no one but you.</p>
+  </div>
+</div>
+
+<div class="final">
+  <div class="wrap">
+    <h2>Put your footage in a <span class="grad-text">vault</span>.</h2>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="https://github.com/Okohedeki/Vaultly/releases/download/v0.4.0/Vaultly-0.4.0-arm64.dmg">⬇ Download for Mac</a>
+      <a class="btn btn-ghost" href="https://github.com/Okohedeki/Vaultly/releases/download/v0.4.0/Vaultly-Setup-0.4.0.exe">⬇ Download for Windows</a>
+    </div>
+    <p class="hero-note">Free while in beta · Mac &amp; Windows · no account, no subscription</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap foot-in">
+    <span class="brand"><span class="v" style="width:22px;height:22px;font-size:12px;border-radius:7px;background:var(--grad);display:inline-grid;place-items:center;color:#fff;">V</span>&nbsp;Vaultly</span>
+    <span class="spacer"></span>
+    <span>Made for creators who own their work.</span>
+  </div>
+</footer>
+
+</body>
+</html>
