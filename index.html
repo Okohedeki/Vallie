@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vallie — the encrypted studio for content creators</title>
-<meta name="description" content="A private home for your footage: locked on your own computer, organized for you, cut, and dubbed into 10 languages with a natural voice — with a final safety check before anything posts. No cloud, no account, no subscription.">
+<meta name="description" content="A private home for your footage: locked on your own computer, organized for you, cut, and dubbed into 10 languages with a natural voice — with a final safety check before anything posts. The vault is free forever; Pro dubbing is $19/mo.">
 <meta property="og:title" content="Vallie — the private studio for content creators">
 <meta property="og:description" content="Your footage, locked on your own computer: organized, cut, dubbed into 10 languages, and never uploaded anywhere.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23c462f5'/><text x='50' y='72' text-anchor='middle' font-size='60' font-weight='800' font-family='sans-serif' fill='white'>V</text></svg>">
@@ -111,6 +111,20 @@
   .card p { color: var(--mut); font-size: 14.5px; }
   .card .ic { font-size: 22px; margin-bottom: 12px; display: block; }
 
+  /* ── pricing ── */
+  .plans { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 40px; max-width: 860px; }
+  .plan { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 30px 28px; display: flex; flex-direction: column; }
+  .plan.pro { border-color: transparent; background: linear-gradient(var(--panel), var(--panel)) padding-box, var(--grad) border-box; border: 1.5px solid transparent; box-shadow: 0 20px 60px rgba(196, 98, 245, 0.18); }
+  .plan h3 { font-size: 20px; font-weight: 800; }
+  .plan .price { font-family: var(--disp); font-size: 38px; font-weight: 800; margin: 10px 0 2px; }
+  .plan .price small { font-size: 15px; font-weight: 600; color: var(--mut); }
+  .plan .tagline { color: var(--mut); font-size: 14.5px; margin-bottom: 18px; }
+  .plan .f-list { margin-bottom: 26px; }
+  .plan .btn { margin-top: auto; justify-content: center; }
+  .badge-pro { display: inline-block; font-family: var(--disp); font-size: 11px; font-weight: 800; letter-spacing: 0.08em; color: #fff; background: var(--grad); border-radius: 6px; padding: 2px 8px; vertical-align: 2px; margin-left: 8px; }
+  .plan-note { margin-top: 16px; font-size: 13px; color: var(--fnt); }
+  @media (max-width: 860px) { .plans { grid-template-columns: 1fr; } }
+
   /* ── manifesto ── */
   .manifesto { margin-top: 88px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: linear-gradient(180deg, rgba(255, 92, 138, 0.045), rgba(168, 85, 247, 0.045)); padding: 64px 0; text-align: center; }
   .manifesto h2 { max-width: 26ch; margin: 10px auto 14px; }
@@ -146,6 +160,7 @@
       <a href="#edit">Edit</a>
       <a href="#localize">Languages</a>
       <a href="#safety">Safety &amp; Rights</a>
+      <a href="#pricing">Pricing</a>
     </div>
     <div class="nav-cta">
       <a class="btn btn-primary" href="https://github.com/Okohedeki/Vallie/releases/download/v0.5.0/Vallie-0.5.0-arm64.dmg">Download</a>
@@ -155,7 +170,7 @@
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow"><span class="dot"></span>Free while in beta · nothing ever leaves your computer</span>
+    <span class="eyebrow"><span class="dot"></span>Free to use · nothing ever leaves your computer</span>
     <h1>The studio your <span class="grad-text">content</span> deserves.</h1>
     <p class="lede">
       A private home for your footage — no cloud, no uploads, nobody else with a key.
@@ -167,7 +182,7 @@
       <a class="btn btn-primary" href="https://github.com/Okohedeki/Vallie/releases/download/v0.5.0/Vallie-0.5.0-arm64.dmg">⬇ Download for Mac</a>
       <a class="btn btn-ghost" href="https://github.com/Okohedeki/Vallie/releases/download/v0.5.0/Vallie-Setup-0.5.0.exe">⬇ Download for Windows</a>
     </div>
-    <p class="hero-note">Free while in beta · no account, no subscription</p>
+    <p class="hero-note">The vault is free forever · dubbing is <a href="#pricing" style="text-decoration: underline;">Pro, $19/mo</a> · no account needed</p>
 
     <div class="window">
       <div class="window-bar"><span></span><span></span><span></span></div>
@@ -179,7 +194,7 @@
       <span><b>Never</b> uploaded</span>
       <span>Dubbed in <b>10 languages</b></span>
       <span><b>You</b> approve every post</span>
-      <span><b>No</b> subscription</span>
+      <span><b>Free</b> vault, forever</span>
     </div>
   </div>
 </header>
@@ -215,7 +230,7 @@
     language — subtitles and a spoken voice track — without leaving the app.</p>
     <div class="feature flip" id="localize">
       <div class="f-copy">
-        <h3>Speak to the whole world — in a natural voice</h3>
+        <h3>Speak to the whole world — in a natural voice<span class="badge-pro">PRO</span></h3>
         <p>Vallie listens to your clip, translates what's said, and speaks it back out loud in
         the new language. It all happens on your own computer, and your video never leaves it.</p>
         <div class="chips">
@@ -255,6 +270,44 @@
   </div>
 </section>
 
+<section id="pricing">
+  <div class="wrap">
+    <span class="kicker k-rose">Pricing</span>
+    <h2>The vault is free. Going global is Pro.</h2>
+    <p class="sub">Everything that keeps your footage private and safe costs nothing — forever,
+    not just in beta. Pro unlocks dubbing, so one shoot can speak ten languages.</p>
+    <div class="plans">
+      <div class="plan">
+        <h3>Free</h3>
+        <p class="price">$0</p>
+        <p class="tagline">The private studio, complete.</p>
+        <ul class="f-list">
+          <li>Encrypted vault — footage never leaves your computer</li>
+          <li>Scene-splitting, spoken-word search, auto-tagging</li>
+          <li>Cuts, captions, and per-platform exports</li>
+          <li>The final-look safety gate on every export</li>
+          <li>Signed releases &amp; per-recipient watermarks</li>
+        </ul>
+        <a class="btn btn-ghost" href="https://github.com/Okohedeki/Vallie/releases/download/v0.5.0/Vallie-0.5.0-arm64.dmg">⬇ Download free</a>
+      </div>
+      <div class="plan pro">
+        <h3>Pro<span class="badge-pro">$19/MO</span></h3>
+        <p class="price">$19<small> / month</small></p>
+        <p class="tagline">Reach fans who don't speak English.</p>
+        <ul class="f-list">
+          <li>Everything in Free</li>
+          <li>Dub any cut into <b>all 10 languages</b> — natural voice, on your machine</li>
+          <li>Translated subtitles baked into every dub</li>
+          <li>Every new Pro feature as it ships</li>
+        </ul>
+        <a class="btn btn-primary" href="https://vallie.lemonsqueezy.com/buy/PRODUCT_UUID">Go Pro — $19/mo</a>
+        <p class="plan-note">Cancel anytime. Your license key arrives by email — paste it into
+        the app to unlock dubbing. Your footage still never leaves your computer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="manifesto">
   <div class="wrap">
     <span class="kicker k-violet">Why it lives on your machine</span>
@@ -271,7 +324,7 @@
       <a class="btn btn-primary" href="https://github.com/Okohedeki/Vallie/releases/download/v0.5.0/Vallie-0.5.0-arm64.dmg">⬇ Download for Mac</a>
       <a class="btn btn-ghost" href="https://github.com/Okohedeki/Vallie/releases/download/v0.5.0/Vallie-Setup-0.5.0.exe">⬇ Download for Windows</a>
     </div>
-    <p class="hero-note">Free while in beta · Mac &amp; Windows · no account, no subscription</p>
+    <p class="hero-note">Free vault, forever · Mac &amp; Windows · dubbing is Pro, $19/mo</p>
   </div>
 </div>
 
